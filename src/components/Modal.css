@@ -1,0 +1,89 @@
+body.modal-open {
+  overflow: hidden;
+}
+
+.Modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+.Modal .modal-container {
+  padding: 1em;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: white;
+  overflow: auto;
+  min-height: 4em;
+}
+
+@media only screen and (max-width: 768px) {
+  .Modal .modal-container {
+    height: 100%;
+    padding: 2em;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  @keyframes modal-slide-in {
+    from {
+      top: 0.2em;
+      opacity: 0;
+    }
+
+    to {
+      top: 1em;
+      opacity: 1;
+    }
+  }
+
+  .Modal .modal-container {
+    max-width: 700px;
+    position: absolute;
+    top: 1em;
+    /* animation-duration: 0.5s;
+    animation-name: modal-slide-in; */
+    max-height: calc(100vh - 2em);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+  }
+}
+
+.Modal .modal-close-btn {
+  float: right;
+  position: relative;
+  top: 1em;
+  width: 1.5em;
+  height: 1.5em;
+  opacity: 0.3;
+}
+.Modal .modal-close-btn:hover {
+  opacity: 1;
+}
+.Modal .modal-close-btn:before,
+.Modal .modal-close-btn:after {
+  position: absolute;
+  left: 50%;
+  content: ' ';
+  height: 100%;
+  width: 2px;
+  background-color: #333;
+}
+.Modal .modal-close-btn:before {
+  transform: rotate(45deg);
+}
+.Modal .modal-close-btn:after {
+  transform: rotate(-45deg);
+}
