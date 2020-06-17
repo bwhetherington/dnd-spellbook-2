@@ -10,15 +10,17 @@ function* range(from, to) {
   }
 }
 
+const URLS = 'spellbookUrls';
+
 class UrlLoader extends Component {
   state = {
     urls: [],
-    isLoaded: false
+    isLoaded: false,
   };
 
   componentDidMount() {
     // Try to load from localStorage
-    const previousUrls = localStorage.urls;
+    const previousUrls = localStorage[URLS];
     if (previousUrls !== undefined) {
       const parsedUrls = JSON.parse(previousUrls);
       if (parsedUrls instanceof Array) {
@@ -29,16 +31,16 @@ class UrlLoader extends Component {
   }
 
   onChangeInput(i) {
-    return event => {
+    return (event) => {
       const { value } = event.target;
       // console.log(`Update ${i}: ${value}`);
       const { urls } = this.state;
       const newUrls = iterator(range(0, urls.length))
-        .map(j => (j === i ? value : urls[j]))
+        .map((j) => (j === i ? value : urls[j]))
         .collect();
       // console.log(newUrls);
       this.updateState({ urls: newUrls });
-      localStorage.urls = JSON.stringify(newUrls.filter(s => s.length > 0));
+      localStorage[URLS] = JSON.stringify(newUrls.filter((s) => s.length > 0));
     };
   }
 
@@ -59,13 +61,13 @@ class UrlLoader extends Component {
         <Component
           {...componentProps}
           urls={iterator(urls)
-            .filter(s => s.length > 0)
+            .filter((s) => s.length > 0)
             .collect()}
         />
       );
     } else {
       const textBoxes = iterator(range(0, urls.length))
-        .map(i => (
+        .map((i) => (
           <div key={i}>
             <input
               type="text"
