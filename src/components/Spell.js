@@ -7,16 +7,24 @@ const SPELL_LEVELS = {
   0: 'cantrip',
   1: '1st-level',
   2: '2nd-level',
-  3: '3rd-level'
+  3: '3rd-level',
 };
 
-const renderTags = spell => {
+const renderTags = (spell) => {
   const components = [];
   if (spell.concentration) {
-    components.push(<Tag primary key="conc">Concentration</Tag>);
+    components.push(
+      <Tag primary key="conc">
+        Concentration
+      </Tag>
+    );
   }
   if (spell.ritual) {
-    components.push(<Tag secondary key="rit">Ritual</Tag>);
+    components.push(
+      <Tag secondary key="rit">
+        Ritual
+      </Tag>
+    );
   }
   return components;
 };
@@ -24,7 +32,7 @@ const renderTags = spell => {
 function getSpellLevel(level) {
   let text = SPELL_LEVELS[level];
   if (text === undefined) {
-    text = `${level}th-level`;
+    text = `${level}th-level test`;
   }
   return text;
 }
@@ -42,9 +50,17 @@ function capitalize(str) {
 function getSpellBriefLine(spell) {
   const components = [];
   if (spell.level === 0) {
-    components.push(<span key="brief" className="fill">{capitalize(spell.school)} cantrip</span>);
+    components.push(
+      <span key="brief" className="fill">
+        {capitalize(spell.school)} cantrip
+      </span>
+    );
   } else {
-    components.push(<span key="brief" className="fill">{capitalize(getSpellLevel(spell.level))} {spell.school}</span>);
+    components.push(
+      <span key="brief" className="fill">
+        {capitalize(getSpellLevel(spell.level))} {spell.school}
+      </span>
+    );
   }
   return components.concat(renderTags(spell));
 }
@@ -60,7 +76,7 @@ function SpellComponent(props) {
     desc,
     higher_level,
     classes,
-    material
+    material,
   } = spell;
   const levelLine = (
     <p>
@@ -87,13 +103,13 @@ function SpellComponent(props) {
     higher_level === undefined ? (
       ''
     ) : (
-        <p>
-          <b>
-            <i>At Higher Levels.</i>
-          </b>{' '}
-          {ReactHtmlParser(higher_level)}
-        </p>
-      );
+      <p>
+        <b>
+          <i>At Higher Levels.</i>
+        </b>{' '}
+        {ReactHtmlParser(higher_level)}
+      </p>
+    );
   const description = <div>{spellDescription}</div>;
   const availableTo = (
     <p>
@@ -117,7 +133,7 @@ function SpellComponent(props) {
 
 class Spell extends Component {
   state = {
-    spellIndex: 0
+    spellIndex: 0,
   };
 
   render() {
