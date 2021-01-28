@@ -1,3 +1,4 @@
 node_modules
 .cache
+.parce-cache
 dist
