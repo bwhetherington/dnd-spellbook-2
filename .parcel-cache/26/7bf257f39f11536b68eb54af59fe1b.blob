@@ -1,0 +1,135 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactHtmlParser = require('react-html-parser');
+  var _reactHtmlParserDefault = _parcelHelpers.interopDefault(_reactHtmlParser);
+  var _Component = require('./Component');
+  var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+  var _Tag = require('./Tag');
+  var _TagDefault = _parcelHelpers.interopDefault(_Tag);
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  const SPELL_LEVELS = {
+    0: 'cantrip',
+    1: '1st-level',
+    2: '2nd-level',
+    3: '3rd-level'
+  };
+  const renderTags = spell => {
+    const components = [];
+    if (spell.concentration) {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement(_TagDefault.default, {
+        primary: true,
+        key: "conc"
+      }, "Concentration"));
+    }
+    if (spell.ritual) {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement(_TagDefault.default, {
+        secondary: true,
+        key: "rit"
+      }, "Ritual"));
+    }
+    return components;
+  };
+  function getSpellLevel(level) {
+    let text = SPELL_LEVELS[level];
+    if (text === undefined) {
+      text = `${level}th-level test`;
+    }
+    return text;
+  }
+  function capitalize(str) {
+    if (str.length > 0) {
+      const first = str[0];
+      const rest = str.slice(1);
+      return `${first.toUpperCase()}${rest}`;
+    } else {
+      return '';
+    }
+  }
+  function getSpellBriefLine(spell) {
+    const components = [];
+    if (spell.level === 0) {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement("span", {
+        key: "brief",
+        className: "fill"
+      }, capitalize(spell.school), " cantrip"));
+    } else {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement("span", {
+        key: "brief",
+        className: "fill"
+      }, capitalize(getSpellLevel(spell.level)), " ", spell.school));
+    }
+    return components.concat(renderTags(spell));
+  }
+  function SpellComponent(props) {
+    const {spell} = props;
+    const {name, casting_time, range, components, duration, desc, higher_level, classes, material} = spell;
+    const levelLine = /*#__PURE__*/_reactDefault.default.createElement("p", null, /*#__PURE__*/_reactDefault.default.createElement("i", {
+      className: "flex"
+    }, getSpellBriefLine(spell)));
+    let componentsLine = components;
+    if (material) {
+      componentsLine += ` (${material})`;
+    }
+    const properties = /*#__PURE__*/_reactDefault.default.createElement("p", null, /*#__PURE__*/_reactDefault.default.createElement("b", null, "Casting Time:"), " ", casting_time, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("b", null, "Range:"), " ", range, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("b", null, "Components:"), " ", componentsLine, /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement("b", null, "Duration:"), " ", duration);
+    const spellDescription = _reactHtmlParserDefault.default(desc);
+    const higherLevel = higher_level === undefined ? '' : /*#__PURE__*/_reactDefault.default.createElement("p", null, /*#__PURE__*/_reactDefault.default.createElement("b", null, /*#__PURE__*/_reactDefault.default.createElement("i", null, "At Higher Levels.")), ' ', _reactHtmlParserDefault.default(higher_level));
+    const description = /*#__PURE__*/_reactDefault.default.createElement("div", null, spellDescription);
+    const availableTo = /*#__PURE__*/_reactDefault.default.createElement("p", null, /*#__PURE__*/_reactDefault.default.createElement("b", null, "Available To:"), " ", classes.map(capitalize).join(', '));
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("h2", null, name), levelLine, /*#__PURE__*/_reactDefault.default.createElement("hr", null), properties, /*#__PURE__*/_reactDefault.default.createElement("hr", null), description, higherLevel, /*#__PURE__*/_reactDefault.default.createElement("hr", null), availableTo)
+    );
+  }
+  _c = SpellComponent;
+  class Spell extends _ComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        spellIndex: 0
+      });
+    }
+    render() {
+      const {spellIndex} = this.state;
+      const {spells} = this.props;
+      const currentSpell = spells[spellIndex];
+      if (currentSpell === undefined) {
+        // Handle error
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", null, "ERROR: Spell not found")
+        );
+      } else {
+        const selector = spells.length > 1 ? /*#__PURE__*/_reactDefault.default.createElement("p", null, "Insert Selector Here") : /*#__PURE__*/_reactDefault.default.createElement("span", null);
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(SpellComponent, {
+            spell: currentSpell
+          }), selector)
+        );
+      }
+    }
+  }
+  exports.default = Spell;
+  var _c;
+  $RefreshReg$(_c, "SpellComponent");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

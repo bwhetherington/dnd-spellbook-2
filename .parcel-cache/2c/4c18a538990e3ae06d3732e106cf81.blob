@@ -1,0 +1,132 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _Component = require('./Component');
+  var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+  var _lazyIters = require('lazy-iters');
+  require('./UrlLoader.css');
+  require('./Tag');
+  function _extends() {
+    _extends = Object.assign || (function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    });
+    return _extends.apply(this, arguments);
+  }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  function* range(from, to) {
+    for (let i = from; i < to; i++) {
+      yield i;
+    }
+  }
+  const URLS = 'spellbookUrls';
+  class UrlLoader extends _ComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        urls: [],
+        isLoaded: false
+      });
+      _defineProperty(this, "onAddUrl", () => {
+        const {urls} = this.state;
+        this.updateState({
+          urls: [...urls, '']
+        });
+      });
+      _defineProperty(this, "onLoad", () => {
+        this.updateState({
+          isLoaded: true
+        });
+      });
+    }
+    componentDidMount() {
+      // Try to load from localStorage
+      const previousUrls = localStorage[URLS];
+      if (previousUrls !== undefined) {
+        const parsedUrls = JSON.parse(previousUrls);
+        if (parsedUrls instanceof Array) {
+          // Set the state to them
+          this.updateState({
+            urls: parsedUrls
+          });
+        }
+      }
+    }
+    onChangeInput(i) {
+      return event => {
+        const {value} = event.target;
+        // console.log(`Update ${i}: ${value}`);
+        const {urls} = this.state;
+        const newUrls = _lazyIters.iterator(range(0, urls.length)).map(j => j === i ? value : urls[j]).collect();
+        // console.log(newUrls);
+        this.updateState({
+          urls: newUrls
+        });
+        localStorage[URLS] = JSON.stringify(newUrls.filter(s => s.length > 0));
+      };
+    }
+    render() {
+      const {isLoaded, urls} = this.state;
+      if (isLoaded) {
+        const {Component = () => /*#__PURE__*/_reactDefault.default.createElement("div", null), componentProps = {}} = this.props;
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement(Component, _extends({}, componentProps, {
+            urls: _lazyIters.iterator(urls).filter(s => s.length > 0).collect()
+          }))
+        );
+      } else {
+        const textBoxes = _lazyIters.iterator(range(0, urls.length)).map(i => /*#__PURE__*/_reactDefault.default.createElement("div", {
+          key: i
+        }, /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "text",
+          placeholder: "Source URL",
+          onChange: this.onChangeInput(i),
+          value: urls[i]
+        }))).collect();
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "UrlLoader"
+          }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "url-fields"
+          }, textBoxes), /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "url-controls"
+          }, /*#__PURE__*/_reactDefault.default.createElement("button", {
+            onClick: this.onAddUrl
+          }, "Add URL"), /*#__PURE__*/_reactDefault.default.createElement("button", {
+            onClick: this.onLoad
+          }, "Load")))
+        );
+      }
+    }
+  }
+  exports.default = UrlLoader;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

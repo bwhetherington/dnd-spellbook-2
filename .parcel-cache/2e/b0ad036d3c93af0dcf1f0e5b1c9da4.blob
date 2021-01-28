@@ -1,0 +1,23 @@
+.SpellTable tbody tr:hover {
+  color: white;
+  background: #009ba1;
+}
+
+.SpellTable tbody tr.active {
+  color: white;
+  background: #006064;
+}
+
+.SpellTable {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.SpellTable .spell-col {
+  display: flex;
+}
+
+.SpellTable .spell-name {
+  flex-grow: 1;
+  text-align: left;
+}

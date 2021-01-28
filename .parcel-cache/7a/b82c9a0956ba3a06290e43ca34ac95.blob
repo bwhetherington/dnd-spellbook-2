@@ -1,0 +1,89 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _lazyIters = require('lazy-iters');
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  // Props are:
+  // head: array of headers
+  // body: array of arrays of columns
+  const id = x => x;
+  const computeColor = isFocus => isFocus ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)';
+  const computeStyle = isFocus => ({
+    color: computeColor(isFocus)
+  });
+  const computeWidth = (widths, index) => widths[index] || 'auto';
+  class SortTable extends _reactDefault.default.Component {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        sortColumn: 0
+      });
+      _defineProperty(this, "onClickHeader", index => () => this.setState({
+        ...this.state,
+        sortColumn: index
+      }));
+    }
+    render() {
+      const {head, body, onClickRow = id => id, tdRenderer = id, widths = [], ...props} = this.props;
+      const {sortColumn} = this.state;
+      const headComponents = _lazyIters.iterator(head).enumerate().map(([header, index]) => /*#__PURE__*/_reactDefault.default.createElement("td", {
+        width: computeWidth(widths, index),
+        key: index,
+        style: computeStyle(sortColumn === index),
+        onClick: this.onClickHeader(index)
+      }, header)).collect();
+      // Sort body according to the selected header
+      const sortBody = [...body];
+      sortBody.sort((a, b) => {
+        return a[sortColumn].toString().localeCompare(b[sortColumn].toString());
+      });
+      console.log('onClick', onClickRow(["Fire Bolt", 0]));
+      const bodyComponents = _lazyIters.iterator(sortBody).enumerate().map(([row, rowIndex]) => {
+        const columns = _lazyIters.iterator(row).enumerate().map(([col, colIndex]) => {
+          const colContent = tdRenderer(col, colIndex);
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement("td", {
+              width: computeWidth(widths, colIndex),
+              style: {
+                textAlign: 'center'
+              },
+              key: colIndex
+            }, colContent)
+          );
+        }).collect();
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("tr", {
+            key: rowIndex,
+            onClick: onClickRow(row)
+          }, columns)
+        );
+      }).collect();
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("table", props, /*#__PURE__*/_reactDefault.default.createElement("thead", null, /*#__PURE__*/_reactDefault.default.createElement("tr", null, headComponents)), /*#__PURE__*/_reactDefault.default.createElement("tbody", null, bodyComponents))
+      );
+    }
+  }
+  exports.default = SortTable;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

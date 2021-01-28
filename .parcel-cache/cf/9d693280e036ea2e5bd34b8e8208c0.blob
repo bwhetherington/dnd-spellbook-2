@@ -1,0 +1,135 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _Component = require('./Component');
+  var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+  require('./Modal.css');
+  function _extends() {
+    _extends = Object.assign || (function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    });
+    return _extends.apply(this, arguments);
+  }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  class ModalKeyHandler extends _ComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "handleKeyDown", event => {
+        switch (event.keyCode) {
+          case 27:
+            this.props.onClose();
+            return;
+          default:
+            return;
+        }
+      });
+    }
+    componentDidMount() {
+      document.addEventListener('keydown', this.handleKeyDown);
+    }
+    componentWillUnmount() {
+      document.removeEventListener('keydown', this.handleKeyDown);
+    }
+    render() {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("span", null)
+      );
+    }
+  }
+  function id(x) {
+    return x;
+  }
+  function CloseButton(props) {
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", _extends({
+        className: "modal-close-btn"
+      }, props))
+    );
+  }
+  _c = CloseButton;
+  function handleClick(onClose) {
+    return e => {
+      // Check if we clicked outside the modal
+      if (!hasAncestor(e.target, 'modal-container')) {
+        onClose();
+      }
+    };
+  }
+  function hasAncestor(element, className) {
+    if (element.className === className) {
+      return true;
+    } else if (element.parentNode !== undefined && element.parentNode !== null) {
+      return hasAncestor(element.parentNode, className);
+    } else {
+      return false;
+    }
+  }
+  class Modal extends _ComponentDefault.default {
+    componentDidUpdate() {
+      if (this.props.isVisible) {
+        document.body.className = 'modal-open';
+      } else {
+        document.body.className = '';
+      }
+    }
+    render() {
+      const {isVisible, onClose = id, children = []} = this.props;
+      if (isVisible) {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "Modal",
+            onClick: handleClick(onClose),
+            "aria-hidden": true
+          }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "modal-container"
+          }, /*#__PURE__*/_reactDefault.default.createElement(ModalKeyHandler, {
+            onClose: onClose
+          }), /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "modal-header"
+          }, /*#__PURE__*/_reactDefault.default.createElement(CloseButton, {
+            onClick: onClose
+          })), /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "modal-body"
+          }, children)))
+        );
+      } else {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", null)
+        );
+      }
+    }
+  }
+  exports.default = Modal;
+  var _c;
+  $RefreshReg$(_c, "CloseButton");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

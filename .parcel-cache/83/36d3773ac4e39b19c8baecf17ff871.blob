@@ -1,0 +1,99 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _Component = require('./Component');
+  var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+  var _SortTable = require('./SortTable');
+  var _SortTableDefault = _parcelHelpers.interopDefault(_SortTable);
+  var _lazyIters = require('lazy-iters');
+  var _Tag = require('./Tag');
+  var _TagDefault = _parcelHelpers.interopDefault(_Tag);
+  require('./SpellTable.css');
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  const HEADERS = ['Level', 'Spell Name'];
+  const renderTd = spells => (col, colIndex) => {
+    if (colIndex === 1) {
+      return renderName(spells[col][0]);
+    } else if (colIndex === 0) {
+      return renderLevel(col);
+    } else {
+      return col;
+    }
+  };
+  const renderName = spell => {
+    const components = [/*#__PURE__*/_reactDefault.default.createElement("span", {
+      className: "spell-name",
+      key: "name"
+    }, spell.name)];
+    if (spell.concentration) {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement(_TagDefault.default, {
+        primary: true,
+        key: "conc"
+      }, "Concentration"));
+    }
+    if (spell.ritual) {
+      components.push(/*#__PURE__*/_reactDefault.default.createElement(_TagDefault.default, {
+        secondary: true,
+        key: "rit"
+      }, "Ritual"));
+    }
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "spell-col"
+      }, components)
+    );
+  };
+  const renderLevel = level => {
+    const content = level === 0 ? 'Cantrip' : level.toString();
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "level-col"
+      }, content)
+    );
+  };
+  class SpellTable extends _ComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {});
+    }
+    render() {
+      const {spells, onSpellSelect = _ => {}, ...props} = this.props;
+      const onClick = ([_, spellName]) => () => onSpellSelect([spells[spellName][0]]);
+      const spellsMatrix = _lazyIters.iterator(Object.values(spells)).map(spell => spell[0]).map(spell => [spell.level, spell.name]).collect();
+      const renderer = renderTd(spells);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement(_SortTableDefault.default, {
+          className: "SpellTable",
+          tdRenderer: renderer,
+          widths: ['20%', 'auto'],
+          head: HEADERS,
+          body: spellsMatrix,
+          onClickRow: onClick
+        })
+      );
+    }
+  }
+  exports.default = SpellTable;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

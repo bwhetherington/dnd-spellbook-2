@@ -1,0 +1,66 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "loadUrls", function () {
+  return loadUrls;
+});
+_parcelHelpers.export(exports, "buildSpellMap", function () {
+  return buildSpellMap;
+});
+var _Component = require('./Component');
+var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+var _lazyIters = require('lazy-iters');
+function _defineProperty(obj, key, value) {
+  if ((key in obj)) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+async function readUrl(url) {
+  const res = await fetch(url);
+  const json = await res.json();
+  return json;
+}
+async function* readUrls(urls) {
+  for (const url of urls) {
+    yield await readUrl(url);
+  }
+}
+async function loadUrls(urls) {
+  const sources = await _lazyIters.asyncIterator(readUrls(urls)).collect();
+  const spells = _lazyIters.iterator(sources).flatMap(source => _lazyIters.iterator(source.spells).map(spell => ({
+    ...spell,
+    source: source.name
+  }))).collect();
+  return spells;
+}
+function buildSpellMap(spells) {
+  const spellMap = {};
+  for (const spell of spells) {
+    const {name} = spell;
+    const entry = spellMap[name];
+    if (entry instanceof Array) {
+      entry.push(spell);
+    } else {
+      spellMap[name] = [spell];
+    }
+  }
+  return spellMap;
+}
+class SpellLoader extends _ComponentDefault.default {
+  constructor(...args) {
+    super(...args);
+    _defineProperty(this, "state", {
+      // `spells` is a mapping of spell names to lists of corresponding spells
+      spells: {}
+    });
+  }
+  loadSource(source) {}
+  loadSpell(spell) {}
+}

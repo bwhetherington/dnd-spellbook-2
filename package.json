@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "parcel build ./public/index.html",
     "start": "serve ./dist",
-    "start:dev": "parcel ./public/index/html",
+    "start:dev": "parcel serve ./public/index.html",
     "build": "parcel build ./public/index.html --public-url ."
   },
   "keywords": [],

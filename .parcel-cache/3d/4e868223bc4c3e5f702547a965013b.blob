@@ -1,0 +1,193 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _Component = require('./Component');
+  var _ComponentDefault = _parcelHelpers.interopDefault(_Component);
+  var _lazyIters = require('lazy-iters');
+  require('./Select.css');
+  function _extends() {
+    _extends = Object.assign || (function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    });
+    return _extends.apply(this, arguments);
+  }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  function id(x) {
+    return x;
+  }
+  function Menu(props) {
+    const {isShown = false, options, onChange = id, cursor = 0} = props;
+    if (isShown) {
+      const children = _lazyIters.iterator(options).enumerate().map(([option, i]) => {
+        const className = cursor === i ? 'option selected' : 'option';
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            key: i,
+            className: className,
+            onClick: () => onChange(i)
+          }, option.label)
+        );
+      }).collect();
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "menu"
+        }, children)
+      );
+    } else {
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("span", {
+          style: {
+            display: 'none'
+          }
+        })
+      );
+    }
+  }
+  _c = Menu;
+  class Select extends _ComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        isFocused: false,
+        cursor: 0
+      });
+      _defineProperty(this, "onFocus", () => {
+        this.setState({
+          isFocused: true
+        });
+      });
+      _defineProperty(this, "onBlur", () => {
+        const {onChange = id} = this.props;
+        this.setState({
+          isFocused: false
+        });
+        onChange(this.selected);
+      });
+      _defineProperty(this, "onChangeOption", i => {
+        this.setState({
+          cursor: i
+        }, () => {
+          this.component.blur();
+        });
+      });
+      _defineProperty(this, "onKeyDown", e => {
+        e.preventDefault();
+        const {key} = e;
+        switch (key) {
+          case 'ArrowUp':
+            this.moveUp();
+            break;
+          case 'ArrowDown':
+            this.moveDown();
+            break;
+          case 'Enter':
+            this.component.blur();
+            break;
+        }
+      });
+    }
+    get selected() {
+      const {options} = this.props;
+      const {cursor} = this.state;
+      return options[cursor];
+    }
+    get length() {
+      return this.props.options.length;
+    }
+    onSelect(i) {
+      const {onChange = id} = this.props;
+      const obj = this.props.options[i];
+      onChange(obj);
+    }
+    moveDown() {
+      const {cursor} = this.state;
+      let newCursor = cursor + 1;
+      while (newCursor >= this.length) {
+        newCursor -= this.length;
+      }
+      this.setState({
+        cursor: newCursor
+      });
+    }
+    moveUp() {
+      const {cursor} = this.state;
+      let newCursor = cursor - 1;
+      while (newCursor < 0) {
+        newCursor += this.length;
+      }
+      this.setState({
+        cursor: newCursor
+      });
+    }
+    render() {
+      const {options, onChange, ...props} = this.props;
+      const {cursor, isFocused} = this.state;
+      const selected = this.selected;
+      const menu = /*#__PURE__*/_reactDefault.default.createElement(Menu, {
+        isShown: isFocused,
+        options: options,
+        cursor: cursor,
+        onChange: this.onChangeOption
+      });
+      const text = selected !== undefined ? selected.label : /*#__PURE__*/_reactDefault.default.createElement("span", {
+        style: {
+          height: '1em'
+        }
+      });
+      const icon = isFocused ? /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "arrow up"
+      }) : /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "arrow down"
+      });
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("span", _extends({
+          className: "Select",
+          tabIndex: 0,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
+          onKeyDown: this.onKeyDown,
+          ref: el => this.component = el
+        }, props), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "container"
+        }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "label"
+        }, text), /*#__PURE__*/_reactDefault.default.createElement("span", {
+          className: "icon"
+        }, icon)), menu)
+      );
+    }
+  }
+  exports.default = Select;
+  var _c;
+  $RefreshReg$(_c, "Menu");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

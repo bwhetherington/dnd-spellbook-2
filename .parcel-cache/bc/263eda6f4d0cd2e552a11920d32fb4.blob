@@ -1,0 +1,5 @@
+.Label {
+  color: #999;
+  font-weight: bold;
+  margin: auto;
+}

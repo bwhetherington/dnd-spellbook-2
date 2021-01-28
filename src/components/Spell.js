@@ -32,7 +32,7 @@ const renderTags = (spell) => {
 function getSpellLevel(level) {
   let text = SPELL_LEVELS[level];
   if (text === undefined) {
-    text = `${level}th-level test`;
+    text = `${level}th-level`;
   }
   return text;
 }

@@ -1,0 +1,29 @@
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('./Label.css');
+  function Label(props) {
+    const {children = []} = props;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "Label"
+      }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "container"
+      }, children))
+    );
+  }
+  _c = Label;
+  exports.default = Label;
+  var _c;
+  $RefreshReg$(_c, "Label");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

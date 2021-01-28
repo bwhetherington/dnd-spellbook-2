@@ -1,0 +1,185 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _react = require('react');
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _reactDom = require('react-dom');
+  require('./index.css');
+  require('@babel/polyfill');
+  var _componentsUrlLoader = require('./components/UrlLoader');
+  var _componentsUrlLoaderDefault = _parcelHelpers.interopDefault(_componentsUrlLoader);
+  var _componentsModal = require('./components/Modal');
+  var _componentsModalDefault = _parcelHelpers.interopDefault(_componentsModal);
+  var _componentsSpellLoader = require('./components/SpellLoader');
+  var _componentsSpell = require('./components/Spell');
+  var _componentsSpellDefault = _parcelHelpers.interopDefault(_componentsSpell);
+  var _componentsComponent = require('./components/Component');
+  var _componentsComponentDefault = _parcelHelpers.interopDefault(_componentsComponent);
+  var _componentsSpellTable = require('./components/SpellTable');
+  var _componentsSpellTableDefault = _parcelHelpers.interopDefault(_componentsSpellTable);
+  var _componentsSelect = require('./components/Select');
+  var _componentsSelectDefault = _parcelHelpers.interopDefault(_componentsSelect);
+  var _componentsLabel = require('./components/Label');
+  var _componentsLabelDefault = _parcelHelpers.interopDefault(_componentsLabel);
+  var _lazyIters = require('lazy-iters');
+  require('./components/Tag');
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  class Comp extends _componentsComponentDefault.default {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        modal: false,
+        spells: {},
+        spellLine: '',
+        selectedSpell: null,
+        selectedClass: 'any'
+      });
+      _defineProperty(this, "onChangeClass", ({value}) => {
+        this.setState({
+          selectedClass: value
+        });
+      });
+      _defineProperty(this, "onToggleModal", () => {
+        const {modal} = this.state;
+        console.log(!modal);
+        this.setState({
+          modal: !modal
+        });
+      });
+      _defineProperty(this, "onCloseModal", () => {
+        this.setState({
+          modal: false
+        });
+      });
+      _defineProperty(this, "onEditSpell", e => {
+        const {value} = e.target;
+        console.log(value);
+        this.setState({
+          spellLine: value
+        });
+      });
+      _defineProperty(this, "onSelectSpell", spell => this.setState({
+        modal: true,
+        selectedSpell: spell
+      }));
+    }
+    async componentDidMount() {
+      // https://dl.dropbox.com/s/r9jyvbkrtjcb08r/spells.json?dl=0
+      const spells = await _componentsSpellLoader.loadUrls(this.props.urls);
+      const map = _componentsSpellLoader.buildSpellMap(spells);
+      console.log(map);
+      this.setState({
+        spells: map
+      });
+    }
+    render() {
+      let modal = /*#__PURE__*/_reactDefault.default.createElement("span", null, "No spell selected");
+      if (this.state.spells !== ({})) {
+        // Check textfield
+        if (this.state.selectedSpell === null) {
+          const spellName = this.state.spellLine;
+          const spell = this.state.spells[spellName];
+          if (spell !== undefined) {
+            modal = /*#__PURE__*/_reactDefault.default.createElement(_componentsSpellDefault.default, {
+              spells: spell
+            });
+          }
+        } else {
+          modal = /*#__PURE__*/_reactDefault.default.createElement(_componentsSpellDefault.default, {
+            spells: this.state.selectedSpell
+          });
+        }
+      }
+      const {spells, selectedClass} = this.state;
+      const spellName = this.state.spellLine.toLowerCase();
+      const spellsToRender = _lazyIters.iterator(Object.keys(spells)).filter(key => (selectedClass === 'any' || spells[key][0].classes.indexOf(selectedClass) > -1) && (this.state.spellLine == '' || spells[key][0].name.toLowerCase().indexOf(spellName) > -1)).fold({}, (obj, key) => {
+        obj[key] = spells[key];
+        return obj;
+      });
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement(_componentsModalDefault.default, {
+          isVisible: this.state.modal,
+          onClose: this.onCloseModal
+        }, modal), /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "root"
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+          class: "input"
+        }, /*#__PURE__*/_reactDefault.default.createElement(_componentsLabelDefault.default, null, "Spell"), /*#__PURE__*/_reactDefault.default.createElement("input", {
+          class: "search-name",
+          type: "text",
+          value: this.state.spellLine,
+          onChange: this.onEditSpell,
+          style: {
+            width: 80
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement(_componentsLabelDefault.default, null, "Class"), /*#__PURE__*/_reactDefault.default.createElement(_componentsSelectDefault.default, {
+          options: options,
+          onChange: this.onChangeClass,
+          style: {
+            width: 120
+          }
+        })), /*#__PURE__*/_reactDefault.default.createElement(_componentsSpellTableDefault.default, {
+          spells: spellsToRender,
+          onSpellSelect: this.onSelectSpell,
+          style: {
+            width: '100%'
+          }
+        })))
+      );
+    }
+  }
+  const root = document.getElementById('root');
+  const options = [{
+    value: 'any',
+    label: 'Any'
+  }, {
+    value: 'artificer',
+    label: 'Artificer'
+  }, {
+    value: 'bard',
+    label: 'Bard'
+  }, {
+    value: 'cleric',
+    label: 'Cleric'
+  }, {
+    value: 'druid',
+    label: 'Druid'
+  }, {
+    value: 'paladin',
+    label: 'Paladin'
+  }, {
+    value: 'ranger',
+    label: 'Ranger'
+  }, {
+    value: 'sorcerer',
+    label: 'Sorcerer'
+  }, {
+    value: 'warlock',
+    label: 'Warlock'
+  }, {
+    value: 'wizard',
+    label: 'Wizard'
+  }];
+  _reactDom.render(/*#__PURE__*/_reactDefault.default.createElement(_componentsUrlLoaderDefault.default, {
+    Component: Comp
+  }), root);
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
