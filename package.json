@@ -2,7 +2,7 @@
   "name": "dnd-spellbook-2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
     "postinstall": "parcel build ./public/index.html",
     "start": "serve ./dist",

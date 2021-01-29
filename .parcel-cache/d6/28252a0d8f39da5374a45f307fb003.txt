@@ -1,7 +1,8 @@
-29436
+29441
 56/home/bwh/dnd-reference-unified/dnd-spellbook-2/.babelrc1611877982368321280 0
 65/home/bwh/dnd-reference-unified/dnd-spellbook-2/package-lock.json1611877836350281381 0
 69/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/d20.d551d3cb.png1611878046943461233 0
+75/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.77aeabc0.css.map1611878878327264288 0
 70/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.1ff716b3.js1611878047111459001 0
 61/home/bwh/dnd-reference-unified/dnd-spellbook-2/src/index.css1598142621265797648 0
 60/home/bwh/dnd-reference-unified/dnd-spellbook-2/src/index.js1598142621265797648 0
@@ -16,9 +17,9 @@
 72/home/bwh/dnd-reference-unified/dnd-spellbook-2/src/components/Modal.css1598142621265797648 0
 75/home/bwh/dnd-reference-unified/dnd-spellbook-2/src/components/Component.js1598142621265797648 0
 62/home/bwh/dnd-reference-unified/dnd-spellbook-2/src/components1611877836350281381 1
-60/home/bwh/dnd-reference-unified/dnd-spellbook-2/package.json1611877889469565590 0
-65/home/bwh/dnd-reference-unified/dnd-spellbook-2/public/index.html1611877910309285661 0
-54/home/bwh/dnd-reference-unified/dnd-spellbook-2/public1598142621265797648 1
+60/home/bwh/dnd-reference-unified/dnd-spellbook-2/package.json1611878866863453259 0
+65/home/bwh/dnd-reference-unified/dnd-spellbook-2/public/index.html1611878836223961263 0
+54/home/bwh/dnd-reference-unified/dnd-spellbook-2/public1611878778648928176 1
 89/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/ajv/lib/dot/dependencies.jst499162500000000000 0
 83/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/ajv/lib/dot/coerce.def499162500000000000 0
 85/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/ajv/lib/dot/validate.jst499162500000000000 0
@@ -216,7 +217,7 @@
 128/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/previous-map.js499162500000000000 0
 122/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/parser.js499162500000000000 0
 125/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/container.js499162500000000000 0
-63/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.html1611878047091459267 0
+63/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.html1611878878323264354 0
 127/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/lazy-result.js499162500000000000 0
 134/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/terminal-highlight.js499162500000000000 0
 127/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-discard-overridden/node_modules/postcss/lib/stringifier.js499162500000000000 0
@@ -3249,6 +3250,7 @@
 65/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/pako1611877719219872839 1
 82/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/indexes-of/.npmignore1384655104000000000 0
 80/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/indexes-of/index.js1384592490000000000 0
+71/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.77aeabc0.css1611878878327264288 0
 99/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/caniuse-lite/data/features/css-grid.js499162500000000000 0
 84/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/indexes-of/package.json1611877719519868737 0
 79/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/indexes-of/LICENSE1384591714000000000 0
@@ -5042,6 +5044,7 @@
 132/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/postcss-minify-selectors/node_modules/postcss/docs/guidelines/runner.md499162500000000000 0
 96/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@emotion/core/dist/core.cjs.js.flow499162500000000000 0
 95/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@emotion/core/dist/core.cjs.dev.js499162500000000000 0
+74/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.ba1559b9.js.map1611878878335264156 0
 99/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@emotion/core/dist/core.browser.cjs.js499162500000000000 0
 111/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@emotion/core/dist/emotion-element-cfcfecf4.esm.js499162500000000000 0
 99/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@emotion/core/dist/core.umd.min.js.map499162500000000000 0
@@ -5419,6 +5422,7 @@
 95/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/core/lib/PackagerRunner.js499162500000000000 0
 77/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/core/lib1611877767291217328 1
 99/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/core/test/PublicBundle.test.js499162500000000000 0
+69/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/d20.9de8fe22.png1611878873383345714 0
 85/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/fs/lib/NodeFS.js499162500000000000 0
 100/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/core/test/InternalAsset.test.js499162500000000000 0
 138/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/transformer-babel/node_modules/core-js/features/symbol/unscopables.js499162500000000000 0
@@ -6481,7 +6485,7 @@
 89/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/transformer-glsl/lib1611877766535227611 1
 116/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/react-html-parser/demo/src/js/data/transform/options.js1503443795000000000 0
 92/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/es-abstract/2019/HasProperty.js499162500000000000 0
-52/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist1611878047111459001 1
+52/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist1611878878335264156 1
 95/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/es-abstract/2019/ArraySetLength.js499162500000000000 0
 74/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/lodash/set.js499162500000000000 0
 91/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/es-abstract/2019/IsCallable.js499162500000000000 0
@@ -13511,7 +13515,7 @@
 81/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/object-keys/index.js499162500000000000 0
 93/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/es-abstract/2016/TimeFromYear.js499162500000000000 0
 97/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/rxjs/src/internal/symbol/iterator.ts499162500000000000 0
-47/home/bwh/dnd-reference-unified/dnd-spellbook-21611877985332281723 1
+47/home/bwh/dnd-reference-unified/dnd-spellbook-21611878861663539169 1
 112/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/rxjs/internal/scheduler/AnimationFrameAction.js.map499162500000000000 0
 149/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@parcel/transformer-babel/node_modules/core-js/modules/esnext.async-iterator.flat-map.js499162500000000000 0
 106/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/lint-staged/node_modules/chalk/source/util.js499162500000000000 0
@@ -18099,7 +18103,7 @@
 81/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/is-regex/.travis.yml499162500000000000 0
 108/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/rxjs/_esm2015/internal/observable/throwError.js499162500000000000 0
 80/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/listr2/CHANGELOG.md499162500000000000 0
-58/home/bwh/dnd-reference-unified/dnd-spellbook-2/.gitignore1598142621265797648 0
+58/home/bwh/dnd-reference-unified/dnd-spellbook-2/.gitignore1611878069647159707 0
 87/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/rxjs/operator/mergeScan.js499162500000000000 0
 97/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/rxjs/observable/RangeObservable.d.ts499162500000000000 0
 137/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/helper-replace-supers/node_modules/@babel/generator/lib/node/index.js456789000000000000 0
@@ -27228,6 +27232,7 @@
 108/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/preset-env/data/built-in-modules.json.js456789000000000000 0
 96/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/preset-env/data/built-ins.js456789000000000000 0
 101/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/preset-env/data/built-ins.json.js456789000000000000 0
+70/home/bwh/dnd-reference-unified/dnd-spellbook-2/dist/index.ba1559b9.js1611878878327264288 0
 97/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/core-js/library/modules/_is-array.js499162500000000000 0
 91/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/preset-env/package.json1611877718791878692 0
 91/home/bwh/dnd-reference-unified/dnd-spellbook-2/node_modules/@babel/preset-env/lib/utils.js456789000000000000 0
